@@ -1,12 +1,12 @@
 package tn.esprit.azizspring22.Domain;
 
-
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,4 +33,15 @@ public class Client {
     String numPermis;
 
     LocalDate dateInscription;
+
+    // Atelier 2 - Association Client <-> Reservation
+    @OneToMany(
+            mappedBy = "client",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY
+    )
+    @Builder.Default
+    @ToString.Exclude
+    List<Reservation> reservations = new ArrayList<>();
+
 }

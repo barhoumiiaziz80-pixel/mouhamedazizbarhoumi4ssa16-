@@ -26,4 +26,24 @@ public class Reservation {
 
     @Enumerated(value = EnumType.STRING)
     StatutReservation statut;
+
+    // Association Reservation -> Client
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    Client client;
+
+    // Association Reservation -> Vehicule
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    Vehicule vehicule;
+
+    // Atelier 2 - Association Reservation <-> Contrat
+    @OneToOne(
+            mappedBy = "reservation",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @ToString.Exclude
+    Contrat contrat;
+
 }

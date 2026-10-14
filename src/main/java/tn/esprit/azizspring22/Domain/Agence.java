@@ -1,12 +1,11 @@
 package tn.esprit.azizspring22.Domain;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,4 +28,23 @@ public class Agence {
     String adresse;
 
     String telephone;
+
+    // Atelier 2 - Association Agence <-> Vehicule
+    @OneToMany(
+            mappedBy = "agence",
+            fetch = FetchType.LAZY
+    )
+    @Builder.Default
+    @ToString.Exclude
+    List<Vehicule> vehicules = new ArrayList<>();
+
+    // Atelier 2 - Association Agence <-> Employe
+    @OneToMany(
+            mappedBy = "agence",
+            fetch = FetchType.LAZY
+    )
+    @Builder.Default
+    @ToString.Exclude
+    List<Employe> employes = new ArrayList<>();
+
 }

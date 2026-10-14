@@ -27,4 +27,9 @@ public class Paiement {
 
     @Enumerated(value = EnumType.STRING)
     ModePaiement modePaiement;
+
+    // Atelier 2 - Étape 1 : Association Paiement -> Contrat
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    Contrat contrat;
 }

@@ -1,6 +1,5 @@
 package tn.esprit.azizspring22.Domain;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -25,4 +24,10 @@ public class Employe {
 
     @Enumerated(value = EnumType.STRING)
     RoleEmploye role;
+
+    // Atelier 2 - Association Employe -> Agence
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    Agence agence;
+
 }

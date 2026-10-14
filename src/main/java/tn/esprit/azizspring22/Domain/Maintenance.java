@@ -25,4 +25,10 @@ public class Maintenance {
     LocalDate dateFin;
 
     String description;
+
+    // Atelier 2 - Association Maintenance -> Vehicule
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    Vehicule vehicule;
+
 }

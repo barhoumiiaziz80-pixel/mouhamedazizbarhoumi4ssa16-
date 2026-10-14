@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,4 +28,21 @@ public class Contrat {
     BigDecimal montantTotal;
 
     boolean valide;
+
+    // Association Contrat <-> Paiement
+    @OneToMany(
+            mappedBy = "contrat",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    @Builder.Default
+    @ToString.Exclude
+    List<Paiement> paiements = new ArrayList<>();
+
+    // Atelier 2 - Association Contrat -> Reservation
+    @OneToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    Reservation reservation;
+
 }
